@@ -11,12 +11,15 @@ import java.math.BigDecimal;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="bill")
 public class Bill {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="bill_id")
     private Integer billId;
 
     @ManyToOne
+    @JoinColumn(name = "patient_id")
     private Patient patient;
 
     private BigDecimal amount;

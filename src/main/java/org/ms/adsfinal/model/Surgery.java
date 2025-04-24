@@ -1,22 +1,30 @@
 package org.ms.adsfinal.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
+@Table(name = "surgery")
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Surgery {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer surgeryId;
+    @Column(name = "surgery_id")
+    private Integer id;
+
+    @Column(name = "surgeryNo")
     private String surgeryNo;
+
+    @Column(name = "name")
     private String name;
-    @Lob
+
+    @Column(name = "address")
     private String address;
+
+    @Column(name = "phone")
     private String phone;
 
     public Surgery(String surgeryNo, String name, String address, String phone) {
