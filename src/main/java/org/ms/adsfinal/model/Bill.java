@@ -1,18 +1,19 @@
 package org.ms.adsfinal.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Bill {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer billId;
 
     @ManyToOne
@@ -20,4 +21,10 @@ public class Bill {
 
     private BigDecimal amount;
     private boolean paid;
+
+    public Bill(Patient patient, BigDecimal amount, boolean paid) {
+        this.patient = patient;
+        this.amount = amount;
+        this.paid = paid;
+    }
 }

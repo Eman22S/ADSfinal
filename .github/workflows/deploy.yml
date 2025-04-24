@@ -35,7 +35,7 @@ jobs:
           push: true
           tags: mani987/adsfinal:latest
 
-      - name: 🔐 SSH into EC2 and Deploy
+      - name: 🔐 SSH into EC2 and Deploy with Docker Compose
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.EC2_HOST }}
@@ -44,6 +44,5 @@ jobs:
           script: |
             cd ~/ADSfinal
             docker pull mani987/adsfinal:latest
-            docker stop adsfinal-app || true
-            docker rm adsfinal-app || true
-            docker run -d --name adsfinal-app -p 8080:8080 mani987/adsfinal:latest
+            docker-compose down
+            docker-compose up -d --build

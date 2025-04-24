@@ -1,18 +1,19 @@
 package org.ms.adsfinal.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Patient {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer patientId;
     private String patientNo;
     private String firstName;
@@ -22,4 +23,14 @@ public class Patient {
     @Lob
     private String address;
     private LocalDate dob;
+
+    public Patient(String patientNo, String firstName, String lastName, String phone, String email, LocalDate dob, String address) {
+        this.patientNo = patientNo;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
+        this.dob = dob;
+        this.address = address;
+    }
 }
