@@ -15,9 +15,12 @@ import org.ms.adsfinal.repository.DentistRepository;
 import org.ms.adsfinal.repository.PatientRepository;
 import org.ms.adsfinal.repository.SurgeryRepository;
 import org.ms.adsfinal.service.AppointmentService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -36,9 +39,20 @@ public class AppointmentServiceImpl implements AppointmentService {
         Appointment a = mapper.toEntity(dto, d, p, s);
         return mapper.toDto(repo.save(a));
     }
-
+    @Override
+    public Page<AppointmentResponseDto> getAllAppointments(Pageable pageable) {
+        return repo.findAll(pageable)
+                .map(mapper::toDto);
+    }
     @Override
     public List<AppointmentResponseDto> getAll() {
-        return repo.findAll().stream().map(mapper::toDto).toList();
+        return repo.findAll()
+                .stream()
+                .map(mapper::toDto)
+                .collect(Collectors.toList());
     }
+
+
+
+
 }
