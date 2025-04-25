@@ -1,10 +1,12 @@
 package org.ms.adsfinal.dto.responseDto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class DentistResponseDto {
     private String firstName;
     private String lastName;
