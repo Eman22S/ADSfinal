@@ -18,6 +18,8 @@ jobs:
         with:
           java-version: 23
           distribution: temurin
+      - name: 🧪 Run Tests
+        run: ./gradlew test
 
       - name: 🧱 Build Spring Boot JAR
         run: ./gradlew bootJar
