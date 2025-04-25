@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
-    List<Patient> findByFullNameContainingIgnoreCase(String searchString);
+    List<Patient> findByLastNameContainingIgnoreCase(String searchString);
 
 }

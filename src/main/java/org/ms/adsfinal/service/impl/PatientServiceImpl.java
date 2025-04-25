@@ -35,7 +35,7 @@ public class PatientServiceImpl implements PatientService {
     }
     @Override
     public List<Patient> searchPatients(String searchString) {
-        return patientRepository.findByFullNameContainingIgnoreCase(searchString);
+        return patientRepository.findByLastNameContainingIgnoreCase(searchString);
     }
     @Override
     public List<Patient> getAllPatientsSortedByLastName() {
