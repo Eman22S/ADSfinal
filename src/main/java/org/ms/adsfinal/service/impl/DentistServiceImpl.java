@@ -8,6 +8,8 @@ import org.ms.adsfinal.mapper.DentistMapper;
 import org.ms.adsfinal.model.Dentist;
 import org.ms.adsfinal.repository.DentistRepository;
 import org.ms.adsfinal.service.DentistService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,6 +30,11 @@ public class DentistServiceImpl implements DentistService {
     @Override
     public List<DentistResponseDto> getAll() {
         return repository.findAll().stream().map(mapper::toDto).collect(Collectors.toList());
+    }
+    @Override
+    public Page<DentistResponseDto> getAllDentists(Pageable pageable) {
+        return repository.findAll(pageable)
+                .map(mapper::toDto);
     }
 
     @Override

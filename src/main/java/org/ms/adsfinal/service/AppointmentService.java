@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface AppointmentService {
     AppointmentResponseDto create(AppointmentRequestDto dto);
-   // List<AppointmentResponseDto> getAll();
+    List<AppointmentResponseDto> getAll();
    Page<AppointmentResponseDto> getAllAppointments(Pageable pageable);
 
 }

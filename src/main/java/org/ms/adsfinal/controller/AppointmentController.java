@@ -24,7 +24,7 @@ public class AppointmentController {
         return new ResponseEntity<>(service.create(dto), HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public ResponseEntity<Page<AppointmentResponseDto>> getAllAppointments(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size
@@ -34,8 +34,8 @@ public class AppointmentController {
     }
 
 
-    //@GetMapping
-    //public ResponseEntity<List<AppointmentResponseDto>> getAll() {
-     //   return ResponseEntity.ok(service.getAll());
-    //}
+    @GetMapping
+    public ResponseEntity<List<AppointmentResponseDto>> getAll() {
+        return ResponseEntity.ok(service.getAll());
+    }
 }

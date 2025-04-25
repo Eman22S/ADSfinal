@@ -20,6 +20,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -43,6 +44,14 @@ public class AppointmentServiceImpl implements AppointmentService {
         return repo.findAll(pageable)
                 .map(mapper::toDto);
     }
+    @Override
+    public List<AppointmentResponseDto> getAll() {
+        return repo.findAll()
+                .stream()
+                .map(mapper::toDto)
+                .collect(Collectors.toList());
+    }
+
 
 
 
