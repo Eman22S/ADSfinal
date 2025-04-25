@@ -25,7 +25,7 @@ public class PatientController {
 
     // 2. GET patient by ID with exception handling
     @GetMapping("/patients/{id}")
-    public ResponseEntity<?> getPatientById(@PathVariable String id) {
+    public ResponseEntity<?> getPatientById(@PathVariable Integer id) {
         Patient patient = patientService.getPatientById(id);
         if (patient == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Patient with ID " + id + " not found.");
@@ -41,18 +41,18 @@ public class PatientController {
 
     // 4. PUT - Update patient by ID
     @PutMapping("/patient/{id}")
-    public ResponseEntity<?> updatePatient(@PathVariable String id, @RequestBody Patient updatedPatient) {
+    public ResponseEntity<?> updatePatient(@PathVariable Integer id, @RequestBody Patient updatedPatient) {
         Patient existing = patientService.getPatientById(id);
         if (existing == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Patient with ID " + id + " not found.");
         }
-        updatedPatient.setPatientId(id);
+        updatedPatient.setId(id);
         return ResponseEntity.ok(patientService.createPatient(updatedPatient));
     }
 
     // 5. DELETE patient by ID
     @DeleteMapping("/patient/{id}")
-    public ResponseEntity<?> deletePatient(@PathVariable String id) {
+    public ResponseEntity<?> deletePatient(@PathVariable Integer id) {
         Patient existing = patientService.getPatientById(id);
         if (existing == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Patient with ID " + id + " not found.");

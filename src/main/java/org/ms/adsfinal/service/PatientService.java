@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface PatientService {
     List<Patient> getAllPatients();
-    Patient getPatientById(String id);
+    Patient getPatientById(Integer id);
     Patient createPatient(Patient patient);
-    void deletePatient(String id);
+    void deletePatient(Integer id);
     List<Patient> searchPatients(String searchString);
     List<Patient> getAllPatientsSortedByLastName();
 

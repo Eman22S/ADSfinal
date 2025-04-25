@@ -20,7 +20,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public Patient getPatientById(String id) {
+    public Patient getPatientById(Integer id) {
         return patientRepository.findById(id).orElse(null);
     }
 
@@ -30,7 +30,7 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public void deletePatient(String id) {
+    public void deletePatient(Integer id) {
         patientRepository.deleteById(id);
     }
     @Override
@@ -41,8 +41,8 @@ public class PatientServiceImpl implements PatientService {
     public List<Patient> getAllPatientsSortedByLastName() {
         return patientRepository.findAll().stream()
                 .sorted((p1, p2) -> {
-                    String lastName1 = p1.getFullName().trim().substring(p1.getFullName().lastIndexOf(" ") + 1).toLowerCase();
-                    String lastName2 = p2.getFullName().trim().substring(p2.getFullName().lastIndexOf(" ") + 1).toLowerCase();
+                    String lastName1 = p1.getLastName(); //p1.getFullName().trim().substring(p1.getFullName().lastIndexOf(" ") + 1).toLowerCase();
+                    String lastName2 = p2.getLastName();//p2.getFullName().trim().substring(p2.getFullName().lastIndexOf(" ") + 1).toLowerCase();
                     return lastName1.compareTo(lastName2);
                 })
                 .toList();
